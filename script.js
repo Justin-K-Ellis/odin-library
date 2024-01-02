@@ -1,15 +1,16 @@
 // DOM objects
 let bookList = document.querySelector("#book-list");
 let bookForm = document.querySelector("#book-form");
-const testBook = new Book("Bob's Book", "Bob Smith", 1986, 120);
+let innerGallery = document.querySelector(".inner-gallery");
+// const testBook = new Book("Bob's Book", "Bob Smith", 1986, 120);
 
 
 // Scripts variables
 let library = [];
 
 // Function invocations
-addBook(library, testBook);
-displayBooks();
+// addBook(library, testBook);
+// displayBooks();
 
 
 // DOM interactions
@@ -18,10 +19,11 @@ displayBooks();
 function displayBooks() {
     removeAllChildNodes(bookList);
     for (book of library) {
-        const bookDescription = book.describeBook();
-        let item = document.createElement("li");
-        item.textContent = bookDescription;
-        bookList.appendChild(item);
+        cardBuilder(book);
+        // const bookDescription = book.describeBook();
+        // let item = document.document.createElement("li");
+        // item.textContent = bookDescription;
+        // bookList.appendChild(item);
     }
 }
 
@@ -59,6 +61,50 @@ function handleForm(event) {
     const addedBook = new Book(title, author, year, pages);
     addBook(library, addedBook);
     displayBooks();
+}
+
+function cardBuilder(book) {
+    // Get book object info
+    const title = book.title;
+    const author = book.author;
+    const year = book.year;
+    const pages = book.pages;
+
+    // Create card elements
+    let outerCard = document.createElement("div");
+    let card = document.createElement("div");
+    let cardContent = document.createElement("div");
+    let cardTitle = document.createElement("span");
+    let cardAuthor = document.createElement("p");
+    let cardYear = document.createElement("p");
+    let cardPages = document.createElement("p");
+
+    // Give elements content
+    cardTitle.textContent = title;
+    cardAuthor.textContent = `Author: ${author}`;
+    cardYear.textContent = year;
+    cardPages.textContent = `${pages} pages`;
+
+    // Apply classes to elements
+    outerCard = addOuterCard(outerCard);
+    card.classList.add("card");
+    cardContent.classList.add("card-content");
+    cardTitle.classList.add("card-title");
+
+    // Append elements to elements
+    cardContent.appendChild(cardTitle).appendChild(cardAuthor).appendChild(cardYear).appendChild(cardPages);
+    card.appendChild(cardContent);
+    outerCard.appendChild(card);
+
+    // Append finished card to parent div
+    innerGallery.appendChild(outerCard);
+}
+
+function addOuterCard(div) {
+    div.classList.add("col");
+    div.classList.add("s12");
+    div.classList.add("m6");
+    return div;
 }
 
 // Clear displayed books in order to display new books
