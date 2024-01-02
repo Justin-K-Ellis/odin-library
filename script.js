@@ -92,7 +92,10 @@ function cardBuilder(book) {
     cardTitle.classList.add("card-title");
 
     // Append elements to elements
-    cardContent.appendChild(cardTitle).appendChild(cardAuthor).appendChild(cardYear).appendChild(cardPages);
+    cardContent.appendChild(cardTitle);
+    cardContent.appendChild(cardAuthor);
+    cardContent.appendChild(cardYear);
+    cardContent.appendChild(cardPages);
     card.appendChild(cardContent);
     outerCard.appendChild(card);
 
@@ -100,6 +103,7 @@ function cardBuilder(book) {
     innerGallery.appendChild(outerCard);
 }
 
+// Add multiple CSS classes to outer card
 function addOuterCard(div) {
     div.classList.add("col");
     div.classList.add("s12");
