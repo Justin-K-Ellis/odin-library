@@ -17,7 +17,7 @@ let library = [];
 
 // Loop through library and get descriptions of books, display them on page
 function displayBooks() {
-    removeAllChildNodes(bookList);
+    removeAllChildNodes(innerGallery);
     for (book of library) {
         cardBuilder(book);
         // const bookDescription = book.describeBook();
