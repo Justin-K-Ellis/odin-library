@@ -1,0 +1,10 @@
+* {
+    font-family: 'Lora', serif;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Roboto Serif', serif;
+}
+
+#main-image{
+    width: 50%;
+    height: 50%;
+}

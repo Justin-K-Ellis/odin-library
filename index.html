@@ -3,49 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./stlyes.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles.css" Custom CSS
+    <!-- Custom JS -->
     <script src="./script.js" defer></script>
-    <title>Odin Library</title>
+
+    <!-- Materialize CSS, icons, and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+
+    <!-- Roboto Serif font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Noto+Sans:wght@300;400&family=Roboto+Serif:opsz@8..144&display=swap" rel="stylesheet">
+    <title>Book Buddies</title>
 </head>
 <body>
+    <div class="container">
+        <!-- Header -->
+        <section class="header">
+            <nav>
+                <div class="nav-wrapper yellow lighten-5">
+                  <a href="#" class="brand-logo center black-text"><i class="material-icons">book</i>Book Buddies</a>
+                </div>
+            </nav>
+        </section>
+        <hr>
 
-    <!-- Header -->
-    <section class="header">
-        <h1>Odin Library</h1>
-    </section>
-    <hr>
+        <section class="inputs">
+            <div class="row">
+                <!-- Input form -->
+                <form class="col s6" id="book-form">
+                    <!-- Title -->
+                    <div>
+                        <label for="book-title">Title:</label>
+                        <input type="text" id="book-title" name="book-title">
+                    </div>
+                    <!-- Author -->
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author">
+                    </div>
+                    <!-- Year -->
+                    <div>
+                        <label for="year">Year:</label>
+                        <input type="text" id="year" name="year">
+                    </div>
+                    <!-- Pages -->
+                    <div>
+                        <label for="pages">Pages:</label>
+                        <input type="text" id="pages" name="pages">
+                    </div>
+                    <button class="btn yellow lighten-5 black-text" type="submit">Add Book</button>
+                </form>
 
-    <section class="inputs">
-        <form id="book-form">
-            <!-- Title -->
-            <div>
-                <label for="book-title">Title:</label>
-                <input type="text" id="book-title" name="book-title">
+                <!-- Illustration -->
+                <!-- <img class="responsive-image col s1 z-depth-2 circle" src="./images/main-img-sm.png" alt="A book floating above a table" id="main-image"> -->
             </div>
-            <!-- Author -->
-            <div>
-                <label for="author">Author:</label>
-                <input type="text" id="author" name="author">
-            </div>
-            <!-- Year -->
-            <div>
-                <label for="year">Year:</label>
-                <input type="text" id="year" name="year">
-            </div>
-            <!-- Pages -->
-            <div>
-                <label for="pages">Pages:</label>
-                <input type="text" id="pages" name="pages">
-            </div>
-            <button type="submit">Add Book</button>
-        </form>
-    </section>
-    <hr>
+        </section>
+        <hr>
 
-    <!-- Book Gallery -->
-    <section class="book-gallery">
-        <ul id="book-list"></ul>
-    </section>
+        <!-- Book Gallery -->
+        <section class="book-gallery">
+            <ul id="book-list"></ul>
+
+            <!-- Example books card -->
+            <div class="row">
+                <div class="col s12 m6">
+                  <div class="card">
+                    <div class="card-content black-text">
+                      <span class="card-title">Republic</span>
+                      <p>Author: Plato</p>
+                      <p>375 BCE</p>
+                      <p>295 pages</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+    </div>  
     
 </body>
 </html>
