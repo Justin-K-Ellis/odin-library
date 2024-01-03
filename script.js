@@ -1,39 +1,10 @@
-// DOM objects
+// Variable declairations
 let bookList = document.querySelector("#book-list");
 let bookForm = document.querySelector("#book-form");
 let innerGallery = document.querySelector(".inner-gallery");
-// const testBook = new Book("Bob's Book", "Bob Smith", 1986, 120);
-
-
-// Scripts variables
 let library = [];
 
-// Function invocations
-// addBook(library, testBook);
-// displayBooks();
-
-
-// DOM interactions
-
-// Loop through library and get descriptions of books, display them on page
-function displayBooks() {
-    removeAllChildNodes(innerGallery);
-    for (book of library) {
-        cardBuilder(book);
-        // const bookDescription = book.describeBook();
-        // let item = document.document.createElement("li");
-        // item.textContent = bookDescription;
-        // bookList.appendChild(item);
-    }
-}
-
-// Process book submission
-bookForm.addEventListener("submit", handleForm);
-
-
-// Function definitions
-
-// Build new book object
+// Book object constructor
 function Book(title, author, year, pages) {
     // Book constructor
     this.title = title;
@@ -45,10 +16,9 @@ function Book(title, author, year, pages) {
     }
 }
 
-// Add a book to the library array.
-function addBook(arr, book) {
-    arr.push(book);
-}
+// Process book submission
+bookForm.addEventListener("submit", handleForm);
+
 
 // Get booked info from form input, process description, add to library
 function handleForm(event) {
@@ -59,17 +29,19 @@ function handleForm(event) {
     const year = formData.get("year");
     const pages = formData.get("pages");
     const addedBook = new Book(title, author, year, pages);
-    addBook(library, addedBook);
+    library.push(addedBook);
     displayBooks();
 }
 
-function cardBuilder(book) {
-    // Get book object info
-    const title = book.title;
-    const author = book.author;
-    const year = book.year;
-    const pages = book.pages;
+// Loop through library and get descriptions of books, display them on page
+function displayBooks() {
+    removeAllChildNodes(innerGallery);
+    for (book of library) {
+        cardBuilder(book);
+    }
+}
 
+function cardBuilder(book) {
     // Create card elements
     let outerCard = document.createElement("div");
     let card = document.createElement("div");
@@ -80,10 +52,10 @@ function cardBuilder(book) {
     let cardPages = document.createElement("p");
 
     // Give elements content
-    cardTitle.textContent = title;
-    cardAuthor.textContent = `Author: ${author}`;
-    cardYear.textContent = year;
-    cardPages.textContent = `${pages} pages`;
+    cardTitle.textContent = book.title;
+    cardAuthor.textContent = `Author: ${book.author}`;
+    cardYear.textContent = book.year;
+    cardPages.textContent = `${book.pages} pages`;
 
     // Apply classes to elements
     outerCard = addOuterCard(outerCard);
@@ -117,3 +89,8 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+// Example book
+const republic = new Book("Republic", "Plato", "375 BCE", 295);
+library.push(republic);
+displayBooks();
