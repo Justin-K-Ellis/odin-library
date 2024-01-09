@@ -11,14 +11,14 @@ function Book(title, author, year, pages) {
     this.author = author;
     this.year = year;
     this.pages = pages;
-    this.describeBook = function() {
+    this.read = false;
+    this.describeBook = function() {  // For debugging
         return `${this.title} by ${this.author}, written in ${this.year}. ${this.pages} pages.`;
     }
 }
 
 // Process book submission
 bookForm.addEventListener("submit", handleForm);
-
 
 // Get booked info from form input, process description, add to library
 function handleForm(event) {
@@ -50,24 +50,40 @@ function cardBuilder(book) {
     let cardAuthor = document.createElement("p");
     let cardYear = document.createElement("p");
     let cardPages = document.createElement("p");
+    let action = document.createElement("div");
+    let deleteButton = document.createElement("button");
+    let deleteIcon = document.createElement("i");
 
     // Give elements content
     cardTitle.textContent = book.title;
     cardAuthor.textContent = `Author: ${book.author}`;
     cardYear.textContent = book.year;
     cardPages.textContent = `${book.pages} pages`;
+    // deleteButton.textContent = "delete";
+    deleteIcon.textContent = "delete";
 
-    // Apply classes to elements
+    // Give delete button a "data-id" attribute and deletion funcationality
+    deleteButton.setAttribute("data-id", library.indexOf(book));
+    deleteButton.addEventListener("click", handleDelete);
+
+    // Apply CSS classes to elements
     outerCard = addOuterCard(outerCard);
     card.classList.add("card");
     cardContent.classList.add("card-content");
     cardTitle.classList.add("card-title");
+    action.classList.add("card-action")
+    deleteButton.classList.add("btn-floating");
+    deleteButton.classList.add("red");
+    deleteIcon.classList.add("material-icons");
 
     // Append elements to elements
+    deleteButton.appendChild(deleteIcon);
     cardContent.appendChild(cardTitle);
     cardContent.appendChild(cardAuthor);
     cardContent.appendChild(cardYear);
     cardContent.appendChild(cardPages);
+    action.appendChild(deleteButton);
+    cardContent.appendChild(action);
     card.appendChild(cardContent);
     outerCard.appendChild(card);
 
@@ -79,8 +95,15 @@ function cardBuilder(book) {
 function addOuterCard(div) {
     div.classList.add("col");
     div.classList.add("s12");
-    div.classList.add("m6");
+    div.classList.add("m4");
     return div;
+}
+
+// Allow books to be deleted from library and removed from page
+function handleDelete(event) {
+    const dataIndex = event.target.getAttribute("data-id");
+    library.splice(dataIndex, 1);
+    displayBooks();
 }
 
 // Clear displayed books in order to display new books
@@ -94,3 +117,12 @@ function removeAllChildNodes(parent) {
 const republic = new Book("Republic", "Plato", "375 BCE", 295);
 library.push(republic);
 displayBooks();
+
+// TODO: implement accordian
+
+// Accordian
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.collapsible');
+//     var instances = M.Collapsible.init(elems, true);
+//   });
+      
