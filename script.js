@@ -11,7 +11,6 @@ function Book(title, author, year, pages) {
     this.author = author;
     this.year = year;
     this.pages = pages;
-    this.read = false;
     this.describeBook = function() {  // For debugging
         return `${this.title} by ${this.author}, written in ${this.year}. ${this.pages} pages.`;
     }
@@ -50,21 +49,12 @@ function cardBuilder(book) {
     let cardAuthor = document.createElement("p");
     let cardYear = document.createElement("p");
     let cardPages = document.createElement("p");
-    let action = document.createElement("div");
-    let deleteButton = document.createElement("button");
-    let deleteIcon = document.createElement("i");
 
     // Give elements content
     cardTitle.textContent = book.title;
     cardAuthor.textContent = `Author: ${book.author}`;
     cardYear.textContent = book.year;
     cardPages.textContent = `${book.pages} pages`;
-    // deleteButton.textContent = "delete";
-    deleteIcon.textContent = "delete";
-
-    // Give delete button a "data-id" attribute and deletion funcationality
-    deleteButton.setAttribute("data-id", library.indexOf(book));
-    deleteButton.addEventListener("click", handleDelete);
 
     // Apply CSS classes to elements
     outerCard = addOuterCard(outerCard);
@@ -77,12 +67,10 @@ function cardBuilder(book) {
     deleteIcon.classList.add("material-icons");
 
     // Append elements to elements
-    deleteButton.appendChild(deleteIcon);
     cardContent.appendChild(cardTitle);
     cardContent.appendChild(cardAuthor);
     cardContent.appendChild(cardYear);
     cardContent.appendChild(cardPages);
-    action.appendChild(deleteButton);
     cardContent.appendChild(action);
     card.appendChild(cardContent);
     outerCard.appendChild(card);
@@ -95,16 +83,10 @@ function cardBuilder(book) {
 function addOuterCard(div) {
     div.classList.add("col");
     div.classList.add("s12");
-    div.classList.add("m4");
+    div.classList.add("m3");
     return div;
 }
 
-// Allow books to be deleted from library and removed from page
-function handleDelete(event) {
-    const dataIndex = event.target.getAttribute("data-id");
-    library.splice(dataIndex, 1);
-    displayBooks();
-}
 
 // Clear displayed books in order to display new books
 function removeAllChildNodes(parent) {
@@ -112,6 +94,9 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+let readButtons = document.querySelectorAll(".readCheckMark");
+readButtons.forEach(button => button.addEventListener("click", handleReadStatus));
 
 // Example book
 const republic = new Book("Republic", "Plato", "375 BCE", 295);
