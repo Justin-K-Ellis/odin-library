@@ -61,17 +61,12 @@ function cardBuilder(book) {
     card.classList.add("card");
     cardContent.classList.add("card-content");
     cardTitle.classList.add("card-title");
-    action.classList.add("card-action")
-    deleteButton.classList.add("btn-floating");
-    deleteButton.classList.add("red");
-    deleteIcon.classList.add("material-icons");
 
     // Append elements to elements
     cardContent.appendChild(cardTitle);
     cardContent.appendChild(cardAuthor);
     cardContent.appendChild(cardYear);
     cardContent.appendChild(cardPages);
-    cardContent.appendChild(action);
     card.appendChild(cardContent);
     outerCard.appendChild(card);
 
@@ -88,15 +83,13 @@ function addOuterCard(div) {
 }
 
 
+
 // Clear displayed books in order to display new books
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
-
-let readButtons = document.querySelectorAll(".readCheckMark");
-readButtons.forEach(button => button.addEventListener("click", handleReadStatus));
 
 // Example book
 const republic = new Book("Republic", "Plato", "375 BCE", 295);
