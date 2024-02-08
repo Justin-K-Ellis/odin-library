@@ -5,14 +5,12 @@ let tableBody = document.querySelector("#table-body");
 let library = [];
 
 // Book object constructor
-function Book(title, author, year, pages) {
-    // Book constructor
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.pages = pages;
-    this.describeBook = function() {  // For debugging
-        return `${this.title} by ${this.author}, written in ${this.year}. ${this.pages} pages.`;
+class Book {
+    constructor(title, author, year, pages) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.pages = pages;
     }
 }
 
