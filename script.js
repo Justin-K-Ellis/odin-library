@@ -1,7 +1,7 @@
 // Variable declairations
 let bookList = document.querySelector("#book-list");
 let bookForm = document.querySelector("#book-form");
-let innerGallery = document.querySelector(".inner-gallery");
+let tableBody = document.querySelector("#table-body");
 let library = [];
 
 // Book object constructor
@@ -34,80 +34,35 @@ function handleForm(event) {
 
 // Loop through library and get descriptions of books, display them on page
 function displayBooks() {
-    removeAllChildNodes(innerGallery);
+    removeAllChildNodes(tableBody);
     for (book of library) {
-        // cardBuilder(book);
         appendCard(book);
     }
 }
 
 function appendCard(book) {
-    const html = makeCardHTML(book);
-    const card = document.createElement("div");
-    // card.classList.add("row");
-    card.innerHTML = html;
-    innerGallery.appendChild(card);
+    const card = makeCardHTML(book);   
+    tableBody.appendChild(card);
 }
 
 function makeCardHTML(book) {
     const cardHTML = `
-        <div class="card col" style="width: 18rem;">
-            <div class="card-header">
-                <h5><em>${book.title}</em></h5>
+        <td scope="row"><em>${book.title}</em></td>
+        <td>${book.author}</td>
+        <td>${book.pages}</td>
+        <td>${book.year}</td>
+        <td>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                </label>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">By ${book.author}</li>
-                <li class="list-group-item">Published in ${book.year}</li>
-                <li class="list-group-item">${book.pages} pages</li>
-            </ul>
-        </div>
+        </td>
     `
-    return cardHTML;
+    let card = document.createElement("tr");
+    card.innerHTML = cardHTML;
+    return card;
 }
-
-// function cardBuilder(book) {
-//     // Create card elements
-//     let outerCard = document.createElement("div");
-//     let card = document.createElement("div");
-//     let cardContent = document.createElement("div");
-//     let cardTitle = document.createElement("span");
-//     let cardAuthor = document.createElement("p");
-//     let cardYear = document.createElement("p");
-//     let cardPages = document.createElement("p");
-
-//     // Give elements content
-//     cardTitle.textContent = book.title;
-//     cardAuthor.textContent = `Author: ${book.author}`;
-//     cardYear.textContent = book.year;
-//     cardPages.textContent = `${book.pages} pages`;
-
-//     // Apply CSS classes to elements
-//     outerCard = addOuterCard(outerCard);
-//     card.classList.add("card");
-//     cardContent.classList.add("card-content");
-//     cardTitle.classList.add("card-title");
-
-//     // Append elements to elements
-//     cardContent.appendChild(cardTitle);
-//     cardContent.appendChild(cardAuthor);
-//     cardContent.appendChild(cardYear);
-//     cardContent.appendChild(cardPages);
-//     card.appendChild(cardContent);
-//     outerCard.appendChild(card);
-
-//     // Append finished card to parent div
-//     innerGallery.appendChild(outerCard);
-// }
-
-// // Add multiple CSS classes to outer card
-// function addOuterCard(div) {
-//     div.classList.add("col");
-//     div.classList.add("s12");
-//     div.classList.add("m3");
-//     return div;
-// }
-
-
 
 // Clear displayed books in order to display new books
 function removeAllChildNodes(parent) {
@@ -117,7 +72,7 @@ function removeAllChildNodes(parent) {
 }
 
 // Example book
-// const republic = new Book("Republic", "Plato", "375 BCE", 295);
-// library.push(republic);
+const republic = new Book("Republic", "Plato", "375 BCE", 295);
+library.push(republic);
 displayBooks();
       
