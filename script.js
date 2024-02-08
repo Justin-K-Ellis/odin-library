@@ -47,8 +47,8 @@ function makeCardHTML(book) {
     const cardHTML = `
         <td scope="row"><em>${book.title}</em></td>
         <td>${book.author}</td>
-        <td>${book.pages}</td>
         <td>${book.year}</td>
+        <td>${book.pages}</td>
         <td>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
