@@ -26,57 +26,73 @@
           <span class="navbar-brand mb-0 h1">Book Buddies</span>
         </div>
     </nav>
-
+    <br>
     <!-- Main container -->
     <div class="container">       
         <!-- Form -->
-        <form id="book-form">
-            <div class="mb-3">
-                <label for="book-title" class="form-label">Title:</label>
-                <input type="text" id="book-title" name="book-title" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="author" class="form-label">Author:</label>
-                <input type="text" id="author" name="author" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="year" class="form-label">Year:</label>
-                <input type="text" id="year" name="year" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="pages" class="form-label">Pages:</label>
-                <input type="text" id="pages" name="pages" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-warning">Add</button>
-        </form>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Add a Book
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <form id="book-form">
+                    <div class="mb-3">
+                        <label for="book-title" class="form-label">Title:</label>
+                        <input type="text" id="book-title" name="book-title" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author:</label>
+                        <input type="text" id="author" name="author" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Year:</label>
+                        <input type="text" id="year" name="year" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pages" class="form-label">Pages:</label>
+                        <input type="text" id="pages" name="pages" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-warning">Add</button>
+                  </form>
+                </div>
+              </div>
+          </div>
         
         <hr>
 
         <!-- Book Gallery -->
-        <section class="book-gallery">
+        <section id="gallery">
             <!-- Example book -->
-            <div class="row">
-                <div class="card col-sm-3" style="width: 18rem;">
-                    <div class="card-header">
-                    <h5><em>Republic</em></h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                    <li class="list-group-item">By Plato</li>
-                    <li class="list-group-item">Published in 375 BC</li>
-                    <li class="list-group-item">295 pages</li>
-                    </ul>
-                </div>
-
-                <div class="card col-sm-3" style="width: 18rem;">
-                    <div class="card-header">
-                    <h5><em>Republic</em></h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                    <li class="list-group-item">By Plato</li>
-                    <li class="list-group-item">Published in 375 BC</li>
-                    <li class="list-group-item">295 pages</li>
-                    </ul>
-                </div>
+            <table class="table" id="inner-gallery">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Read</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  <!-- <tr>
+                    <td scope="row"><em>Republic</em></td>
+                    <td>Plato</td>
+                    <td>375 BCE</td>
+                    <td>295</td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                            </label>
+                          </div>
+                    </td>
+                  </tr> -->
+              </table>
+            
                 <!-- <div class="card col" style="width: 18rem;">
                     <div class="card-header">
                     <h5><em>Republic</em></h5>
@@ -87,9 +103,7 @@
                     <li class="list-group-item">295 pages</li>
                     </ul>
                 </div> -->
-            </div>
-
-            <div class="row inner-gallery"></div> 
+            
         </section>
 
 
