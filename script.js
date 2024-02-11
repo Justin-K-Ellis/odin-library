@@ -44,15 +44,19 @@ function appendCard(book) {
 }
 
 function makeRow(book) {
+    // Make row element
     let row = document.createElement("tr");
 
+    // Make table data elements for fields
     let titleData = document.createElement("td");
     titleData.setAttribute("scope", "row");
     let authorData = document.createElement("td");
     let yearData = document.createElement("td");
     let pagesData = document.createElement("td");
     let readData = document.createElement("td");
+    let deleteBtnData = document.createElement("td");
 
+    // Make checkbox
     let formCheckData = document.createElement("td");
     let formCheck = document.createElement("div");
     formCheck.classList.add("form-check");
@@ -69,16 +73,33 @@ function makeRow(book) {
     formCheck.appendChild(label);
     formCheckData.appendChild(formCheck);
 
+    // Get index
+    const index = library.indexOf(book);
+
+    // Make Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = '<i class="bi bi-trash"></i>';
+    deleteBtn.classList.add("btn");
+    deleteBtn.classList.add("btn-danger");
+    deleteBtn.addEventListener("click", () => {
+        deleteBook(index);
+    })
+    deleteBtnData.appendChild(deleteBtn);
+
+    // Fields get content from book object
     titleData.textContent = book.title;
     authorData.textContent = book.author;
     yearData.textContent = book.year;
     pagesData.textContent = book.pages;
     
+    // Append to row
     row.appendChild(titleData);
     row.appendChild(authorData);
     row.appendChild(yearData);
     row.appendChild(pagesData);
     row.appendChild(formCheckData);
+    row.appendChild(deleteBtnData);
+    row.setAttribute("data-index", index);
 
     return row;
 }
@@ -88,6 +109,11 @@ function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function deleteBook(ind) {
+    library.splice(ind, 1);
+    displayBooks();
 }
 
 // Example book
