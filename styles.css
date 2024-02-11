@@ -4,6 +4,11 @@
     font-family: 'Roboto Serif', serif;
 }
 
-/* #book-form {
-    margin-left: 25%;
-} */
+#read-display {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+#book-count {
+    margin-right: 5vw;
+}

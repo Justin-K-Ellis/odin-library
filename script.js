@@ -2,6 +2,8 @@
 let bookList = document.querySelector("#book-list");
 let bookForm = document.querySelector("#book-form");
 let tableBody = document.querySelector("#table-body");
+let bookCount = document.querySelector("#book-count");
+let pageCount = document.querySelector("#page-count");
 let library = [];
 
 // Book object constructor
@@ -12,7 +14,9 @@ class Book {
         this.year = year;
         this.pages = pages;
     }
+
     read = false;
+
     updateReadStatus() {
         this.read === false ? this.read = true : this.read = false;
     }
@@ -40,6 +44,7 @@ function displayBooks() {
     for (book of library) {
         appendCard(book);
     }
+    updateReadCount();
 }
 
 function appendCard(book) {
@@ -70,7 +75,7 @@ function makeRow(book) {
     input.id = `${book.title}-checkbox`;
     input.addEventListener("click", () => {
         book.updateReadStatus();
-        // book.read === true ? input.id = "flexCheckChecked" : input.id = "flexCheckDefault";
+        updateReadCount();
     });
     book.read === true ? input.checked = true : input.checked = false;
     let label = document.createElement("label");
@@ -122,6 +127,19 @@ function removeAllChildNodes(parent) {
 function deleteBook(ind) {
     library.splice(ind, 1);
     displayBooks();
+}
+
+function updateReadCount() {
+    let bookN = 0;
+    let pageN = 0;
+    for (book of library) {
+        if (book.read === true) {
+            bookN++;
+            pageN += parseInt(book.pages);
+        }
+    }
+    bookCount.textContent = bookN;
+    pageCount.textContent = pageN;
 }
 
 // Example book
