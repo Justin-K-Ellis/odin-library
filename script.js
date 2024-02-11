@@ -12,6 +12,10 @@ class Book {
         this.year = year;
         this.pages = pages;
     }
+    read = false;
+    updateReadStatus() {
+        this.read === false ? this.read = true : this.read = false;
+    }
 }
 
 // Process book submission
@@ -53,7 +57,6 @@ function makeRow(book) {
     let authorData = document.createElement("td");
     let yearData = document.createElement("td");
     let pagesData = document.createElement("td");
-    let readData = document.createElement("td");
     let deleteBtnData = document.createElement("td");
 
     // Make checkbox
@@ -64,7 +67,12 @@ function makeRow(book) {
     input.classList.add("form-check-input");
     input.setAttribute("type", "checkbox");
     input.setAttribute("value", "");
-    input.id = "flexCheckDefault";
+    input.id = `${book.title}-checkbox`;
+    input.addEventListener("click", () => {
+        book.updateReadStatus();
+        // book.read === true ? input.id = "flexCheckChecked" : input.id = "flexCheckDefault";
+    });
+    book.read === true ? input.checked = true : input.checked = false;
     let label = document.createElement("label");
     label.classList.add("form-check-label");
     label.setAttribute("for", input.id);
