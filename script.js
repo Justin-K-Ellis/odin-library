@@ -4,6 +4,19 @@ let bookForm = document.querySelector("#book-form");
 let tableBody = document.querySelector("#table-body");
 let bookCount = document.querySelector("#book-count");
 let pageCount = document.querySelector("#page-count");
+
+const titleField = document.querySelector("#book-title");
+const authorField = document.querySelector("#author");
+const yearField = document.querySelector("#year");
+const pagesField = document.querySelector("#pages");
+
+const fields = [
+    titleField,
+    authorField,
+    yearField,
+    pagesField
+];
+
 let library = [];
 
 // Book object constructor
@@ -35,6 +48,9 @@ function handleForm(event) {
     const pages = formData.get("pages");
     const addedBook = new Book(title, author, year, pages);
     library.push(addedBook);
+    for (let field of fields) {
+        clearInput(field);
+    }
     displayBooks();
 }
 
@@ -140,6 +156,10 @@ function updateReadCount() {
     }
     bookCount.textContent = bookN;
     pageCount.textContent = pageN;
+}
+
+function clearInput(field) {
+    field.value = "";
 }
 
 // Example book
